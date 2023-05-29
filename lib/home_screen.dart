@@ -1,41 +1,138 @@
+import 'package:cahier_progression_mobile/parametres_screen.dart';
 import 'package:flutter/material.dart';
-class HomeScreen extends StatelessWidget {
+
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0; // Indice de l'écran actuellement sélectionné
+
+  List<Widget> _screens = [
+    HomeScreenWidget(), // Écran d'accueil
+    ProgressionScreenWidget(), // Écran du formulaire de progression
+    EtapesScreenWidget(), // Écran de la liste des étapes de progression
+    MessagerieScreenWidget(), // Écran de la messagerie pour permettre aux utilisateurs de recevoir les propositions de kite
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold( // structure de base pour l'application comprenant app bar et un body
+    return Scaffold(
       appBar: AppBar(
-        leading: IconButton( //
-          icon: Icon(Icons.menu), // Icône du menu à gauche
+        leading: IconButton(
+          icon: Icon(Icons.menu),
           onPressed: () {
             // Action du bouton de menu
           },
         ),
         actions: [
-          SizedBox(width: AppBar().preferredSize.height), // Espacement entre l'icône du menu et l'image du logo
+          SizedBox(width: AppBar().preferredSize.height),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/ocean.png'), // Image du logo au centre
+                Image.asset('assets/ocean.png'),
               ],
             ),
           ),
-          SizedBox(width: AppBar().preferredSize.height), // Espacement entre l'image du logo et le bouton des paramètres
+          SizedBox(width: AppBar().preferredSize.height),
           IconButton(
-            icon: Icon(Icons.settings), // Icône des paramètres à droite
+            icon: Icon(Icons.settings),
             onPressed: () {
               // Action du bouton de paramètres
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ParametresScreen()),
+              );
             },
           ),
         ],
-        centerTitle: true, // Centrer le contenu de l'AppBar
+        centerTitle: true,
       ),
+      body: _screens[_currentIndex], // Affichage de l'écran correspondant à l'index sélectionné
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        selectedItemColor: Color(0xFF1F355F),
+        items: [
+          BottomNavigationBarItem(
+            icon: Stack(
+              alignment: Alignment.center,
+              children: [
+                Image.asset('assets/basEcran.jpg'),
+                CircleAvatar(
+                  radius: 16,
+                  backgroundColor: Colors.white,
+                  child: Icon(Icons.home),
+                ),
+              ],
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Stack(
+              alignment: Alignment.center,
+              children: [
+                Image.asset('assets/basEcran.jpg'),
+                CircleAvatar(
+                  radius: 16,
+                  backgroundColor: Colors.white,
+                  child: Icon(Icons.assignment),
+                ),
+              ],
+            ),
+            label: 'formulaire Progression',
+          ),
+          BottomNavigationBarItem(
+            icon: Stack(
+              alignment: Alignment.center,
+              children: [
+                Image.asset('assets/basEcran.jpg'),
+                CircleAvatar(
+                  radius: 16,
+                  backgroundColor: Colors.white,
+                  child: Icon(Icons.playlist_add_check),
+                ),
+              ],
+            ),
+            label: 'liste des Étapes',
+          ),
+          BottomNavigationBarItem(
+            icon: Stack(
+              alignment: Alignment.center,
+              children: [
+                Image.asset('assets/basEcran.jpg'),
+                CircleAvatar(
+                  radius: 16,
+                  backgroundColor: Colors.white,
+                  child: Icon(Icons.mail),
+                ),
+              ],
+            ),
+            label: 'Messagerie',
+          ),
+        ],
+      ),
+    );
+  }
+}
 
-      body: SingleChildScrollView(//widget pour faire defiler le contenu de la colonne verticale si l espace est inssufisant
-        child: Column(// jouant le role du learLayout vertical
+class HomeScreenWidget extends StatelessWidget {
+  const HomeScreenWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(vertical:5.0),
+              padding: EdgeInsets.symmetric(vertical: 5.0),
               child: Text(
                 'IMPROVE YOUR TECHNIQUE',
                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
@@ -46,26 +143,23 @@ class HomeScreen extends StatelessWidget {
             DisciplineBlock(
               image: 'assets/kitesurfwing.jpg',
               title: 'Kitesurf        Surf        wingfoil',
-              description:
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+              description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             ),
             SizedBox(height: 20.0),
-            Row(//pour organiser les enfant en ligne horizontale (linearLayout horizontal)
+            Row(
               children: [
-                Expanded(//pour prendre autant d'espace disponible que possible
+                Expanded(
                   child: DisciplineBlock(
                     image: 'assets/progres.jpg',
                     title: 'Progress by chapter',
-                    description:
-                    'Lorem ipsum dolor sit amet',
+                    description: 'Lorem ipsum dolor sit amet',
                   ),
                 ),
                 Expanded(
                   child: DisciplineBlock(
                     image: 'assets/video.jpg',
                     title: 'Video Included',
-                    description:
-                    'Lorem ipsum dolor sit amet',
+                    description: 'Lorem ipsum dolor sit amet',
                   ),
                 ),
               ],
@@ -73,6 +167,40 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 20.0),
           ],
         ),
+      ),
+    );
+  }
+
+}
+
+class ProgressionScreenWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: Text('Ecran pour le formulaire de progression'),
+      ),
+    );
+  }
+}
+
+class EtapesScreenWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: Text('Ecran pour la liste des Étapes'),
+      ),
+    );
+  }
+}
+
+class MessagerieScreenWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: Text('Ecran pour recevoir les messages'),
       ),
     );
   }
@@ -94,13 +222,12 @@ class DisciplineBlock extends StatelessWidget {
     return Column(
       children: [
         Image.asset(image),
-        SizedBox(height: 10.0),
+        SizedBox(height: 5.0),
         Text(
           title,
           style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
         ),
         Text(description),
-        SizedBox(height: 20.0),
       ],
     );
   }
