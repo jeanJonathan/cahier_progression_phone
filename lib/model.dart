@@ -38,6 +38,30 @@ class DatabaseManager {
           )
         ''');
 
+
+        await db.execute('''
+          CREATE TABLE IF NOT EXISTS progressions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            date TEXT NOT NULL,
+            location TEXT NOT NULL,
+            weather TEXT NOT NULL,
+            notes TEXT,
+            user_id INTEGER,
+            etape_id INTEGER NOT NULL,
+            surf_progression INTEGER,
+            kite_progression INTEGER,
+            wingfoil_progression INTEGER,
+            created_at TEXT,
+            updated_at TEXT,
+            photo1_url TEXT,
+            photo2_url TEXT,
+            photo3_url TEXT,
+            FOREIGN KEY (etape_id) REFERENCES levels (id) ON DELETE CASCADE ON UPDATE CASCADE,
+            FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
+          )
+        ''');
+
+
       },
     );
   }
