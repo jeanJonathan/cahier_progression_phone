@@ -49,10 +49,15 @@ class _ParametresScreenState extends State<ParametresScreen> {
               // Action lorsque l'utilisateur clique sur "Aide"
             },
           ),
-
+          ListTile(
+            title: Text('Déconnexion'),
+            onTap: _deconnexion, // Appel de la fonction de déconnexion
+          ),
         ],
       ),
-
     );
+  }
+
+  void _deconnexion() {//fonction pour gerer la deconnexion
   }
 }
