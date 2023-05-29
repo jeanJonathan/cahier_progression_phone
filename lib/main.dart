@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 
 //Importation de l ecran d acceuil
 import 'package:cahier_progression_mobile/home_screen.dart';
+//import 'package:cahier_progression_mobile/model.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
