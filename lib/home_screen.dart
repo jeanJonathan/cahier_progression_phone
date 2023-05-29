@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
-class HomeScreen extends StatelessWidget {
+
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0; // Indice de l'écran actuellement sélectionné
   @override
   Widget build(BuildContext context) {
     return Scaffold( // structure de base pour l'application comprenant app bar et un body
@@ -74,6 +80,75 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        selectedItemColor: Color(0xFF1F355F), // Couleur des icônes sélectionnées
+        items: [
+          BottomNavigationBarItem(
+            icon: Stack(
+              alignment: Alignment.center,
+              children: [
+                Image.asset('assets/basEcran.jpg'), // Chemin de l'image d'eau
+                CircleAvatar(
+                  radius: 16, // Rayon du cercle
+                  backgroundColor: Colors.white, // Couleur de fond du cercle
+                  child: Icon(Icons.home),
+                ),
+              ],
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Stack(
+              alignment: Alignment.center,
+              children: [
+                Image.asset('assets/basEcran.jpg'), // Chemin de l'image d'eau
+                CircleAvatar(
+                  radius: 16, // Rayon du cercle
+                  backgroundColor: Colors.white, // Couleur de fond du cercle
+                  child: Icon(Icons.assignment),
+                ),
+              ],
+            ),
+            label: 'formulaire Progression',
+          ),
+          BottomNavigationBarItem(
+            icon: Stack(
+              alignment: Alignment.center,
+              children: [
+                Image.asset('assets/basEcran.jpg'), // Chemin de l'image d'eau
+                CircleAvatar(
+                  radius: 16, // Rayon du cercle
+                  backgroundColor: Colors.white, // Couleur de fond du cercle
+                  child: Icon(Icons.playlist_add_check),
+                ),
+              ],
+            ),
+            label: 'liste des Étapes',
+          ),
+          BottomNavigationBarItem(
+            icon: Stack(
+              alignment: Alignment.center,
+              children: [
+                Image.asset('assets/basEcran.jpg'), // Chemin de l'image d'eau
+                CircleAvatar(
+                  radius: 16, // Rayon du cercle
+                  backgroundColor: Colors.white, // Couleur de fond du cercle
+                  child: Icon(Icons.mail),
+                ),
+              ],
+            ),
+            label: 'Messagerie',
+          ),
+        ],
+      ),
+
     );
   }
 }
@@ -94,13 +169,12 @@ class DisciplineBlock extends StatelessWidget {
     return Column(
       children: [
         Image.asset(image),
-        SizedBox(height: 10.0),
+        SizedBox(height: 5.0),
         Text(
           title,
           style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
         ),
         Text(description),
-        SizedBox(height: 20.0),
       ],
     );
   }
