@@ -61,6 +61,19 @@ class DatabaseManager {
           )
         ''');
 
+        await db.execute('''
+          CREATE TABLE IF NOT EXISTS levels (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nom TEXT NOT NULL,
+            description TEXT,
+            hours_needed INTEGER,
+            video_url TEXT,
+            sport_id INTEGER NOT NULL,
+            created_at TEXT,
+            updated_at TEXT,
+            FOREIGN KEY (sport_id) REFERENCES sports (id) ON DELETE CASCADE ON UPDATE CASCADE
+          )
+        ''');
 
       },
     );
