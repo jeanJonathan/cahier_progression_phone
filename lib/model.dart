@@ -74,7 +74,38 @@ class DatabaseManager {
             FOREIGN KEY (sport_id) REFERENCES sports (id) ON DELETE CASCADE ON UPDATE CASCADE
           )
         ''');
+        await db.execute('''
+          CREATE TABLE IF NOT EXISTS sports (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            description TEXT,
+            created_at TEXT,
+            updated_at TEXT
+          )
+        ''');
 
+        await db.execute('''
+          CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            email TEXT NOT NULL,
+            email_verified_at TEXT,
+            password TEXT NOT NULL,
+            sport_id INTEGER,
+            address TEXT,
+            phone TEXT,
+            kite_progression INTEGER,
+            surf_progression INTEGER,
+            wingfoil_progression INTEGER,
+            remember_token TEXT,
+            created_at TEXT,
+            updated_at TEXT,
+            FOREIGN KEY (kite_progression) REFERENCES progressions (id) ON DELETE CASCADE ON UPDATE CASCADE,
+            FOREIGN KEY (surf_progression) REFERENCES progressions (id) ON DELETE CASCADE ON UPDATE CASCADE,
+            FOREIGN KEY (wingfoil_progression) REFERENCES progressions (id) ON DELETE CASCADE ON UPDATE CASCADE,
+            FOREIGN KEY (sport_id) REFERENCES sports (id) ON DELETE CASCADE ON UPDATE CASCADE
+          )
+        ''');
       },
     );
   }
