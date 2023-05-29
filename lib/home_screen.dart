@@ -33,7 +33,6 @@ class HomeScreen extends StatelessWidget {
 
       body: SingleChildScrollView(//widget pour faire defiler le contenu de la colonne verticale si l espace est inssufisant
         child: Column(// jouant le role du learLayout vertical
-          3cv ☻
           children: [
             Padding(
               padding: EdgeInsets.symmetric(vertical:5.0),
@@ -64,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                 Expanded(
                   child: DisciplineBlock(
                     image: 'assets/video.jpg',
-                    ',
+                    title: 'Video Included',
                     description:
                     'Lorem ipsum dolor sit amet',
                   ),
