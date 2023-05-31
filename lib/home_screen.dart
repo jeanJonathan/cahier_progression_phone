@@ -1,6 +1,8 @@
 import 'package:cahier_progression_mobile/parametres_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'menu_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -23,7 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: IconButton(
           icon: Icon(Icons.menu),
           onPressed: () {
-            // Action du bouton de menu
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => MenuScreen())
+            );
           },
         ),
         actions: [
@@ -40,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: Icon(Icons.settings),
             onPressed: () {
-              // Action du bouton de paramètres
+              // Action lorsque l utilisateur clic sur le bouton de paramètres
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ParametresScreen()),
