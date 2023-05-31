@@ -169,5 +169,114 @@ class Level {
   }
 }
 
+class Sport {
+  int id;
+  String name;
+  String description;
+  String createdAt;
+  String updatedAt;
+
+  Sport({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  factory Sport.fromMap(Map<String, dynamic> map) {
+    return Sport(
+      id: map['id'],
+      name: map['name'],
+      description: map['description'],
+      createdAt: map['created_at'],
+      updatedAt: map['updated_at'],
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'description': description,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
+    };
+  }
+}
+
+class User {
+  int id;
+  String name;
+  String email;
+  String emailVerifiedAt;
+  String password;
+  int sportId;
+  String address;
+  String phone;
+  int kiteProgression;
+  int surfProgression;
+  int wingfoilProgression;
+  String rememberToken;
+  String createdAt;
+  String updatedAt;
+
+  User({
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.emailVerifiedAt,
+    required this.password,
+    required this.sportId,
+    required this.address,
+    required this.phone,
+    required this.kiteProgression,
+    required this.surfProgression,
+    required this.wingfoilProgression,
+    required this.rememberToken,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  factory User.fromMap(Map<String, dynamic> map) {
+    return User(
+      id: map['id'],
+      name: map['name'],
+      email: map['email'],
+      emailVerifiedAt: map['email_verified_at'],
+      password: map['password'],
+      sportId: map['sport_id'],
+      address: map['address'],
+      phone: map['phone'],
+      kiteProgression: map['kite_progression'],
+      surfProgression: map['surf_progression'],
+      wingfoilProgression: map['wingfoil_progression'],
+      rememberToken: map['remember_token'],
+      createdAt: map['created_at'],
+      updatedAt: map['updated_at'],
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'email': email,
+      'email_verified_at': emailVerifiedAt,
+      'password': password,
+      'sport_id': sportId,
+      'address': address,
+      'phone': phone,
+      'kite_progression': kiteProgression,
+      'surf_progression': surfProgression,
+      'wingfoil_progression': wingfoilProgression,
+      'remember_token': rememberToken,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
+    };
+  }
+
+
+}
 
 
