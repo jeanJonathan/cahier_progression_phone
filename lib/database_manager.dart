@@ -111,4 +111,17 @@ class DatabaseManager {
   }
 // Méthodes pour interagir avec la base de données
 
+  static Future<void> insertEtapesData() async {
+    final db = await database;
+
+    await db.transaction((txn) async {
+      await txn.rawInsert('''
+        INSERT INTO etapes (id, nom, description, video_url, level_id, created_at, updated_at, isValidated)
+        VALUES
+          (1, 'Etape 1', 'Description de l\'étape 1', 'https://youtube.com/etape1', 1, '2023-01-01 00:00:00', '2023-01-01 00:00:00', 1),
+          (2, 'Etape 2', 'Description de l\'étape 2', 'https://youtube.com/etape2', 1, '2023-01-02 00:00:00', '2023-01-02 00:00:00', 1),
+          (3, 'Etape 3', 'Description de l\'étape 3', 'https://youtube.com/etape3', 2, '2023-01-03 00:00:00', '2023-01-03 00:00:00', 0);
+      ''');
+    });
+  }
 }

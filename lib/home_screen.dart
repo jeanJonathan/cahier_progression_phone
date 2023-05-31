@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 
 import 'menu_screen.dart';
 
+//importation de la librairie de la base de donnees
+import 'package:cahier_progression_mobile/database_manager.dart';
+
+import 'model.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -187,17 +192,58 @@ class ProgressionScreenWidget extends StatelessWidget {
     );
   }
 }
+class EtapesScreenWidget extends StatefulWidget {
+  @override
+  _EtapesScreenWidgetState createState() => _EtapesScreenWidgetState();
+}
 
-class EtapesScreenWidget extends StatelessWidget {
+class _EtapesScreenWidgetState extends State<EtapesScreenWidget> {
+  List<Etape> etapes = []; // Liste pour stocker les étapes récupérées depuis la base de données
+
+  @override
+  void initState() {
+    super.initState();
+    fetchEtapes(); // Appel de la méthode pour récupérer les étapes depuis la base de données
+  }
+
+  Future<void> fetchEtapes() async {
+    final db = await DatabaseManager.database;
+    final etapesList = await db.query('etapes'); // Récupération des données de la table 'etapes'
+
+    setState(() {
+      etapes = etapesList.map((map) => Etape.fromMap(map)).toList(); // Conversion des données en objets Etape
+      print("test");
+      print("Etapes récupérées depuis la base de données : $etapes");
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('Ecran pour la liste des Étapes'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Liste des Étapes'),
+      ),
+      body:
+      ListView.builder(
+        itemCount: etapes.length,
+        itemBuilder: (context, index) {
+          final etape = etapes[index];
+          print("Affichage de l'étape");
+          return ListTile(
+            title: Text(etape.nom), // Afficher le nom de l'étape
+            subtitle: Text(etape.description),
+            onTap: () {
+              // Gérer le tap sur une étape
+              print("Étape sélectionnée");
+            },
+          );
+        },
       ),
     );
   }
 }
+
 
 class MessagerieScreenWidget extends StatelessWidget {
   @override
