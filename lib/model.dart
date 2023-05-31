@@ -121,3 +121,53 @@ class Progression {
   }
 }
 
+class Level {
+  int id;
+  String nom;
+  String description;
+  int hoursNeeded;
+  String videoUrl;
+  int sportId;
+  String createdAt;
+  String updatedAt;
+
+  Level({
+    required this.id,
+    required this.nom,
+    required this.description,
+    required this.hoursNeeded,
+    required this.videoUrl,
+    required this.sportId,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  factory Level.fromMap(Map<String, dynamic> map) {
+    return Level(
+      id: map['id'],
+      nom: map['nom'],
+      description: map['description'],
+      hoursNeeded: map['hours_needed'],
+      videoUrl: map['video_url'],
+      sportId: map['sport_id'],
+      createdAt: map['created_at'],
+      updatedAt: map['updated_at'],
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'nom': nom,
+      'description': description,
+      'hours_needed': hoursNeeded,
+      'video_url': videoUrl,
+      'sport_id': sportId,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
+    };
+  }
+}
+
+
+
