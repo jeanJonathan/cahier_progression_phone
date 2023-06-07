@@ -20,11 +20,17 @@ samples, guidance on mobile development, and a full API reference.
 - ios
 - lib
   -main.dart : fichier principal de l'application.
+  
   -models.dart : fichier contenant les classes de l'application
+  
   -database_manager.dart : fichier creant la base de donnees sqlite de l'application  
+  
   -home_screen : fichier contenant de l'ecran d'acceuil et disposant des écrans de l'application.
+  
   -menu.dart : l'écran du menu de l'application
+  
   -parametres_screen.dart : l'écran pour afficher les paramètres de l'application.
+  
   -crud_operations : fichier integrant la logique de l'application
 
 - test : ce dossier contiendra les tests unitaires et les tests d'intégration pour l'application.
